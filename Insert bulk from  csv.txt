@@ -1,0 +1,33 @@
+Importing CSV file into SQL table :
+ Consider the given below CSV file or you can use your own csv file to perform this operation. 
+Let us try to import a csv file into our SQL table in SQL Server.
+
+Creating table –
+Here. We will create the table schema as per csv file records.
+
+USE [Test]--Database name
+
+CREATE TABLE [dbo].[Employee](                              
+[Emp ID] bigint primary key,
+[First Name] [varchar](50) NULL,
+[Last Name] [varchar](50) NULL,
+[Salary] bigint,
+[City] [varchar](50)
+)
+
+Bulk Inserting –
+Let’s now bulk insert the file into the Employee SQL table :
+
+BULK INSERT [Test].[dbo].[Employee]
+FROM 'C:\data\employee_data.csv'
+WITH (FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR='\n' );
+
+The most commonly used input parameters are the following as follows.
+
+FIELDTERMINATOR –‘
+‘field_terminator’ is used as a separator between fields. The default field terminator is \t (tab character).
+ 
+ROWTERMINATOR –
+‘row_terminator’ is used to specify the end of the row. The default row terminator is \r\n (newline character). 
